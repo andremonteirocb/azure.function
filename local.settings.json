@@ -1,7 +1,7 @@
 {
     "IsEncrypted": false,
   "Values": {
-    "ServiceBusConnString": "Endpoint=sb://agendei-emails.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=p2CXvo+ekR1ziMTz+kCaBdSeK6ZRuhkChnjRCuZQVGM=",
+    "ServiceBusConnString": "conexão com seu bus",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet"
   }
 }
