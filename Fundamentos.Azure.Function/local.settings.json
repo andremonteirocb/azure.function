@@ -1,7 +1,0 @@
-{
-    "IsEncrypted": false,
-  "Values": {
-    "ServiceBusConnString": "connectionstring_bus",
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
-  }
-}
