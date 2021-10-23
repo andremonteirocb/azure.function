@@ -26,6 +26,8 @@ namespace Fundamentos.Azure.Function
                 Password = config["EmailSettings.Password"]
             };
             builder.Services.AddSingleton(emailSettings);
+
+            //builder.Services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
         }
     }
 }

@@ -1,7 +1,6 @@
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Core;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -16,9 +15,9 @@ namespace Fundamentos.Azure.Function
     public class FunctionSendMail
     {
         private EmailSettings _emailSettings;
-        public FunctionSendMail(EmailSettings emailSettings)
+        public FunctionSendMail(IOptions<EmailSettings> options)
         {
-            _emailSettings = emailSettings;
+            _emailSettings = options.Value;
         }
 
         [FunctionName("SendMail")]
