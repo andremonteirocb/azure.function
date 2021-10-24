@@ -3,6 +3,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
     <UserSecretsId>db6a0a01-9a49-4c42-ad13-0ee0eae4d4a5</UserSecretsId>
+    <AssemblyName>Azure.Function</AssemblyName>
+    <RootNamespace>Azure.Function</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
@@ -10,6 +12,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.13" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.13" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\4 - Infra\Infra.CrossCutting\Infra.CrossCutting.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

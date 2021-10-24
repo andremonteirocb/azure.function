@@ -1,11 +1,12 @@
-﻿using Fundamentos.Azure.Function;
+﻿using Azure.Function;
+using Infra.CrossCutting.Settings;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
 [assembly: FunctionsStartup(typeof(Startup))]
-namespace Fundamentos.Azure.Function
+namespace Azure.Function
 {
     public class Startup : FunctionsStartup
     {

@@ -1,8 +1,9 @@
+using Infra.CrossCutting;
+using Infra.CrossCutting.Settings;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Core;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -10,17 +11,17 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fundamentos.Azure.Function
+namespace Azure.Function
 {
-    public class FunctionSendMail
+    public class FunctionBusTrigger
     {
         private EmailSettings _emailSettings;
-        public FunctionSendMail(IOptions<EmailSettings> options)
+        public FunctionBusTrigger(EmailSettings options)
         {
-            _emailSettings = options.Value;
+            _emailSettings = options;
         }
 
-        [FunctionName("SendMail")]
+        [FunctionName("ConsumerMail")]
         public async Task Run([ServiceBusTrigger("emails", Connection = "ServiceBusConnString")] Message message,
             ILogger logger,
             MessageReceiver messageReceiver)
@@ -30,7 +31,7 @@ namespace Fundamentos.Azure.Function
                 logger.LogInformation($"Iniciando o processo de envio!");
 
                 var json = Encoding.UTF8.GetString(message.Body);
-                var email = JsonConvert.DeserializeObject<OutgoingEmail>(json);
+                var email = JsonConvert.DeserializeObject<Email>(json);
 
                 using (MailMessage mail = new MailMessage(_emailSettings.From, email.To, email.Subject, email.Body))
                 {
@@ -45,9 +46,9 @@ namespace Fundamentos.Azure.Function
                     }
                 }
 
-                await messageReceiver.CompleteAsync(message.SystemProperties.LockToken);
+                logger.LogInformation($"E-mail envio com sucesso!");
 
-                logger.LogInformation($"Processo de envio finalizado!");
+                await messageReceiver.CompleteAsync(message.SystemProperties.LockToken);
             }
             catch (Exception ex)
             {

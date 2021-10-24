@@ -1,4 +1,4 @@
-﻿namespace Fundamentos.Azure.Function
+﻿namespace Infra.CrossCutting.Settings
 {
     public class EmailSettings
     {
