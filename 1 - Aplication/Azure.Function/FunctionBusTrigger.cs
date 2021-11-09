@@ -54,7 +54,7 @@ namespace Azure.Function
             {
                 logger.LogError(ex.Message);
 
-                await messageReceiver.DeadLetterAsync(message.SystemProperties.LockToken);
+                await messageReceiver.DeadLetterAsync(message.SystemProperties.DeadLetterSource);
             }
         }
     }
